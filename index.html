@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <h2>Add Items</h2>
+    <form action="/add_task" method="post">
+        <input type="text" name="task" placeholder="Enter task" required>
+        <input type="submit" value="Add">
+    </form>
+
+    <h2>Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task }}
+                <form action="/edit_task/{{ loop.index0 }}" method="post">
+                    <input type="text" name="updated_task" placeholder="Edit task" required>
+                    <input type="submit" value="Edit">
+                </form>
+                <a href="/delete_task/{{ loop.index0 }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
